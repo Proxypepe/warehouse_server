@@ -11,7 +11,7 @@ data class RequestDTO(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var requestId: Long = 0,
-    @Column(nullable = false)
+    @Column(name = "userId", nullable = false)
     val userId: Int,
     @Column(nullable = false)
     val productName: String,
