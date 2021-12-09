@@ -11,17 +11,19 @@ import org.springframework.context.annotation.Import
 
 @Configuration
 @Import(
-    *[org.springdoc.core.SpringDocConfigProperties::class,
+    org.springdoc.core.SpringDocConfigProperties::class,
     org.springdoc.webmvc.core.MultipleOpenApiSupportConfiguration::class,
-    org.springdoc.core.SpringDocConfiguration::class, org.springdoc.webmvc.core.SpringDocWebMvcConfiguration::class])
+    org.springdoc.core.SpringDocConfiguration::class,
+    org.springdoc.webmvc.core.SpringDocWebMvcConfiguration::class
+)
 class SwaggerConfiguration() {
     @Bean
-    fun publicApi(): GroupedOpenApi? {
+    fun warehouseApi(): GroupedOpenApi? {
         return GroupedOpenApi.builder()
-            .group("user")
-            .pathsToExclude("/user/**", "**/user/**", "**")
+            .group("Api")
+            .pathsToExclude("/user/**","/auth/**", "/register/**", "/requests/**")
             .packagesToScan("com.example.warehouse_server.controllers")
-            .pathsToMatch("/user/**", "**/user/**", "**")
+            .pathsToMatch("/user/**",  "/auth/**", "/register/**", "/requests/**")
             .build()
     }
 }
