@@ -15,33 +15,61 @@ class MockData(private val userRepository: UserRepository, private val requestRe
     override fun run(args: ApplicationArguments?) {
         userRepository.save(UserDTO(
             fullname="Alex",
-            email="Alex@bk.com",
-            password="fdf",
-            role="Admin",
+            email="alex",
+            password="123",
+            role="admin",
         ))
         userRepository.save(UserDTO(
             fullname="Jyk",
             email="Jyk@bk.com",
-            password="fdf",
-            role="Moder",
+            password="123",
+            role="moder",
         ))
         userRepository.save(UserDTO(
             fullname="Pasha",
             email="Pasha@bk.com",
-            password="fdf",
-            role="Moder",
+            password="123",
+            role="moder",
         ))
+
+        userRepository.save(UserDTO(
+            fullname="",
+            email="sds",
+            password="123",
+            role="admin",
+        ))
+
 
         requestRepository.save( RequestDTO(
             userId = 1,
             productName = "Product",
             amount = 100,
             warehousePlace = 1,
+            status = "Ok",
             arrivalDate = null,
             contact = null,
             price = Price(10.0, "RUB")
         ))
-
+        requestRepository.save( RequestDTO(
+            userId = 4,
+            productName = "Product",
+            amount = 100,
+            warehousePlace = 1,
+            status = "Ok",
+            arrivalDate = null,
+            contact = null,
+            price = Price(10.0, "RUB")
+        ))
+        requestRepository.save( RequestDTO(
+            userId = 4,
+            productName = "Product",
+            amount = 100,
+            warehousePlace = 1,
+            status = "Ok",
+            arrivalDate = null,
+            contact = null,
+            price = Price(10.0, "RUB")
+        ))
 
         println("All ok")
     }

@@ -15,6 +15,8 @@ data class RequestBodyModel(
     val amount: Int,
     @Parameter(required = true)
     val warehousePlace: Int,
+    @Parameter(required = true)
+    val status: String,
     @Parameter(required = false)
     val contact: Contact?,
     @Parameter(required = false)

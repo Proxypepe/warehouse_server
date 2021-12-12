@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -21,12 +18,25 @@ import org.springframework.web.bind.annotation.RestController
 @Tag(name = "User Information related interface")
 class UserController(private val userService: UserService) {
 
-
-//    @GetMapping("/{id}")
-//    fun getUserById(@PathVariable id: Long): UserDTO = userService.getUserById(id)
+    @GetMapping("/{email}")
+    @Operation(summary = "Get user info by email")
+    @ApiResponses(
+        ApiResponse(
+            responseCode = "200", description = "Found the user by email", content =
+            arrayOf(
+                Content(
+                    mediaType = "application/json",
+                    schema = Schema(implementation = UserDTO::class)
+                )
+            )
+        )
+    )
+    fun getUserByEmail(@PathVariable email: String): UserDTO{
+        return userService.getUserByEmail(email)
+    }
 
     @GetMapping("/all")
-    @Operation(summary = "Get a list of user")
+    @Operation(summary = "Get a list of users")
     @ApiResponses(
         ApiResponse(
             responseCode = "200", description = "Found the users", content =
@@ -39,4 +49,22 @@ class UserController(private val userService: UserService) {
         )
     )
     fun getUsers() = userService.getUsers()
+
+
+    @PutMapping("/update")
+    @Operation(summary = "Updates user information")
+    @ApiResponses(
+        ApiResponse(
+            responseCode = "200", description = "Updated user information", content =
+            arrayOf(
+                Content(
+                    mediaType = "application/json",
+                    schema = Schema(implementation = UserDTO::class)
+                )
+            )
+        )
+    )
+    fun updateUser(@RequestBody user: UserDTO): UserDTO {
+        return userService.save(user)
+    }
 }

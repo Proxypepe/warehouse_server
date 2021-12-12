@@ -19,6 +19,8 @@ data class RequestDTO(
     val amount: Int,
     @Column(nullable = false)
     val warehousePlace: Int,
+    @Column(nullable = false)
+    val status: String,
     @Column(nullable = true)
     val arrivalDate: Date?,
     @Column(nullable = true)
