@@ -53,9 +53,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Jar> {
     manifest {
-        attributes["Main-Class"] = "com.example.warehouse_server.WarehouseServerApplication.kt"
+        attributes["Main-Class"] = "com.example.warehouse_server.WarehouseServerApplication"
     }
 }
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
