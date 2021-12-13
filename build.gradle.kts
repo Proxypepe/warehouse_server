@@ -18,6 +18,7 @@ configurations {
     }
 }
 
+
 repositories {
     mavenCentral()
 }
@@ -46,10 +47,15 @@ dependencies {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.example.warehouse_server.WarehouseServerApplication.kt"
+    }
+}
 tasks.withType<Test> {
     useJUnitPlatform()
 }
