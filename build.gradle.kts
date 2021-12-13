@@ -51,6 +51,12 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.example.warehouse_server.WarehouseServerApplication"
+    }
+}
+
 springBoot { mainClass.set("com.example.warehouse_server.WarehouseServerApplication") }
 
 tasks.withType<Test> {
